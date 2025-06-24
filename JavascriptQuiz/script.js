@@ -42,3 +42,11 @@ function checkAnswer(btn, i) {
     inputFields[i].style.backgroundColor = "red";
   }
 }
+
+inputFields.forEach((input, i) => {
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      checkAnswer(event.target, i);
+    }
+  });
+});
