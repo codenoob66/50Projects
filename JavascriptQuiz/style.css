@@ -1,0 +1,18 @@
+body {
+  display: flex;
+  width: 100vw;
+  margin: 0;
+}
+
+.score-div {
+  align-items: center;
+}
+
+.questions-div {
+  width: 50%;
+  margin: 5px;
+}
+
+.score-div > p {
+  font-size: 5rem;
+}
