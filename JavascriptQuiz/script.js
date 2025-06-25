@@ -38,6 +38,7 @@ function checkAnswer(btn, i) {
     inputFields[i].style.backgroundColor = "green";
     console.log("correct");
     disableElement(btn);
+    disableElement(inputFields[i]);
     scoreCount++;
     scoreDisplay.textContent = `Score: ${scoreCount}`;
   } else {
@@ -54,7 +55,7 @@ inputFields.forEach((input, i) => {
   input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       checkAnswer(event.target, i);
-      wrongCounter(event.target, i);
+      disableElement(btns[i]);
     }
   });
 });
