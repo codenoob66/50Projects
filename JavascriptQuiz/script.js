@@ -17,6 +17,8 @@ let scoreCount = 0;
 
 const MAX_WRONG = 3;
 
+const resetBtn = document.getElementById("reset");
+
 const scoreDisplay = document.getElementById("score-id");
 
 const btns = document.querySelectorAll("button");
@@ -34,7 +36,15 @@ function disableElement(btn) {
 }
 
 function checkAnswer(btn, i) {
-  if (inputFields[i].value === answerArray[i]) {
+  if (inputFields[i].value === "") {
+    alert("answer can't be empty");
+    return;
+  }
+
+  if (
+    inputFields[i].value.toLocaleLowerCase() ===
+    answerArray[i].toLocaleLowerCase()
+  ) {
     inputFields[i].style.backgroundColor = "green";
     console.log("correct");
     disableElement(btn);
@@ -67,6 +77,8 @@ function wrongCounter() {
   }
 }
 
+//disable input & button
+
 function disableAll() {
   btns.forEach((btn) => {
     disableElement(btn);
@@ -75,3 +87,8 @@ function disableAll() {
     disableElement(input);
   });
 }
+
+// Reset button
+resetBtn.addEventListener("click", () => {
+  window.location.reload();
+});
