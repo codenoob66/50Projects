@@ -11,7 +11,11 @@ const answerArray = [
   "Hydrogen",
 ];
 
+let wrongCount = 0;
+
 let scoreCount = 0;
+
+const MAX_WRONG = 3;
 
 const scoreDisplay = document.getElementById("score-id");
 
@@ -25,7 +29,7 @@ btns.forEach((btn, i) => {
   });
 });
 
-function disableButton(btn) {
+function disableElement(btn) {
   btn.disabled = true;
 }
 
@@ -33,13 +37,16 @@ function checkAnswer(btn, i) {
   if (inputFields[i].value === answerArray[i]) {
     inputFields[i].style.backgroundColor = "green";
     console.log("correct");
-    disableButton(btn);
+    disableElement(btn);
     scoreCount++;
     scoreDisplay.textContent = `Score: ${scoreCount}`;
   } else {
     console.log("incorrect");
-    disableButton(btn);
+    disableElement(btn);
     inputFields[i].style.backgroundColor = "red";
+    wrongCount++;
+    console.log(wrongCount);
+    wrongCounter();
   }
 }
 
@@ -47,6 +54,23 @@ inputFields.forEach((input, i) => {
   input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       checkAnswer(event.target, i);
+      wrongCounter(event.target, i);
     }
   });
 });
+
+function wrongCounter() {
+  if (MAX_WRONG === wrongCount) {
+    alert("you have reach the maximum no. of mistakes");
+    disableAll();
+  }
+}
+
+function disableAll() {
+  btns.forEach((btn) => {
+    disableElement(btn);
+  });
+  inputFields.forEach((input) => {
+    disableElement(input);
+  });
+}
