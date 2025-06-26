@@ -1,30 +1,41 @@
-const apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
 const imgDiv = document.getElementById("img-container");
+let pokemonList = [];
 
-async function getPokemon() {
+async function randomPokemon() {
+  const apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
-
-    return data.results[0].url;
+    const randomIndex = Math.floor(Math.random() * data.count);
+    const choosenPokemon = data.results[randomIndex];
+    pokemonList = data.results;
+    console.log(choosenPokemon);
+    console.log(pokemonList);
+    return choosenPokemon;
   } catch (error) {
     console.error(error);
   }
 }
 
-getPokemon();
-
-async function getSprite() {
+async function getImageOfSelectedPokemon() {
   try {
-    const pokemonUrl = await getPokemon();
-    const response = await fetch(pokemonUrl);
+    const pokemonToGet = await randomPokemon();
+    const response = await fetch(pokemonToGet.url);
     const data = await response.json();
-
-    console.log(data.sprites.front_default);
-    imgDiv.style.backgroundImage = `url(${data.sprites.front_default})`;
+    // console.log(data.sprites.front_default);
+    return data.sprites.front_default;
   } catch (error) {
     console.error(error);
   }
 }
 
-getSprite();
+async function displayPokemon() {
+  try {
+    const pokemonToDisplay = await getImageOfSelectedPokemon();
+    imgDiv.style.backgroundImage = `url(${pokemonToDisplay})`;
+  } catch (error) {
+    console.error();
+  }
+}
+
+displayPokemon();
