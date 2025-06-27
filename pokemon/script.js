@@ -1,41 +1,50 @@
 const imgDiv = document.getElementById("img-container");
 let pokemonList = [];
+let randomIndex = Math.floor(Math.random() * 1302 + 1);
+let pokemonToGuess = "";
+const asnwerInput = document.getElementById("answer-field");
+const submitBtn = document.getElementById("submitButton");
 
 async function randomPokemon() {
   const apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
-    const randomIndex = Math.floor(Math.random() * data.count);
-    const choosenPokemon = data.results[randomIndex];
     pokemonList = data.results;
-    console.log(choosenPokemon);
-    console.log(pokemonList);
-    return choosenPokemon;
+    pokemonToGuess = pokemonList[randomIndex].name;
+    console.log(pokemonToGuess);
+    return pokemonList[randomIndex].url;
   } catch (error) {
     console.error(error);
   }
 }
 
-async function getImageOfSelectedPokemon() {
+async function displaySprite() {
   try {
-    const pokemonToGet = await randomPokemon();
-    const response = await fetch(pokemonToGet.url);
+    const pokemonToDisplay = await randomPokemon();
+    const response = await fetch(pokemonToDisplay);
     const data = await response.json();
-    // console.log(data.sprites.front_default);
+    const sprites = data.sprites.front_default;
+    imgDiv.style.backgroundImage = `url(${sprites})`;
     return data.sprites.front_default;
   } catch (error) {
     console.error(error);
   }
 }
 
-async function displayPokemon() {
-  try {
-    const pokemonToDisplay = await getImageOfSelectedPokemon();
-    imgDiv.style.backgroundImage = `url(${pokemonToDisplay})`;
-  } catch (error) {
-    console.error();
+displaySprite();
+
+function checkAnswer() {
+  if (pokemonToGuess.toLowerCase() === asnwerInput.value.toLowerCase()) {
+    console.log("correct");
+  } else {
+    console.log("incorrect");
   }
 }
 
-displayPokemon();
+submitBtn.addEventListener("click", checkAnswer);
+asnwerInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    checkAnswer();
+  }
+});
