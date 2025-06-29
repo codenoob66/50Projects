@@ -1,0 +1,75 @@
+/* style.css */
+
+/* Reset some default styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Heading */
+h1 {
+  margin-top: 0;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+/* Stopwatch container */
+div {
+  text-align: center;
+}
+
+/* Time display */
+.inner_counter {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #222;
+  background: #fff;
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+
+/* Buttons */
+button {
+  margin: 15px 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Start button */
+#strtBtn {
+  background-color: #4caf50;
+  color: white;
+}
+
+#strtBtn:hover {
+  background-color: #45a049;
+}
+
+/* Stop button */
+#endStopWatch {
+  background-color: #f44336;
+  color: white;
+}
+
+#endStopWatch:hover {
+  background-color: #d32f2f;
+}
+
+#pauseBtn {
+  background-color: orangered;
+  color: white;
+}
