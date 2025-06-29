@@ -9,8 +9,10 @@ const stopWatchBtn = document.getElementById("strtBtn");
 const endStopWatch = document.getElementById("endStopWatch");
 const docTitle = document.getElementById("docTitle");
 const pauseBtn = document.getElementById("pauseBtn");
+let hasStarted = false;
 
 stopWatchBtn.addEventListener("click", function () {
+  hasStarted = true;
   console.log("started");
   if (!secondsIntervalId) {
     secondsIntervalId = setInterval(secondsFunction, 1000);
@@ -50,10 +52,11 @@ function resetStopWatch() {
   seconds.textContent = padNum(secondsCount);
   hourCount = 0;
   hour.textContent = padNum(hourCount);
+  pauseBtn.textContent = "pause";
 }
 
 function pauseStopWatch() {
-  if (pauseBtn.textContent == "pause") {
+  if (secondsIntervalId) {
     pauseBtn.textContent = "resume";
     clearInterval(secondsIntervalId);
     secondsIntervalId = null;
