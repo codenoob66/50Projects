@@ -1,5 +1,58 @@
+/* style.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  color: #ff6347;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
 #img-container {
-  /* background-color: green; */
-  width: 100px;
-  height: 100px;
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2em;
+  color: #333;
+}
+
+#answer-field {
+  padding: 10px;
+  font-size: 1em;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#submitButton {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #ff6347;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#submitButton:hover {
+  background-color: #ff4500;
 }

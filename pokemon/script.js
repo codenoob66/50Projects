@@ -36,7 +36,11 @@ displaySprite();
 
 function checkAnswer() {
   if (pokemonToGuess.toLowerCase() === asnwerInput.value.toLowerCase()) {
+    asnwerInput.value = "";
     console.log("correct");
+    randomIndex = Math.floor(Math.random() * 1302 + 1);
+    pokemonToGuess = pokemonList[randomIndex].name;
+    displaySprite();
   } else {
     console.log("incorrect");
   }
